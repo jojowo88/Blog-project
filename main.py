@@ -229,13 +229,13 @@ def delete_post(post_id):
     db.session.commit()
     return redirect(url_for('get_all_posts'))
 
-# @app.route("/delete/<int:comment_id>")
-# @login_required
-# def delete_comment(comment_id, post_id):
-#     comment_to_delete = BlogPost.query.get(comment_id)
-#     db.session.delete(comment_to_delete)
-#     db.session.commit()
-#     return redirect(url_for('show_post', post_id=post_id))
+@app.route("/delete-comment/<int:post_id>/<int:comment_id>")
+@login_required
+def delete_comment(comment_id, post_id):
+    comment_to_delete = CommentPost.query.get(comment_id)
+    db.session.delete(comment_to_delete)
+    db.session.commit()
+    return redirect(url_for('show_post', post_id=post_id))
 
 
 if __name__ == "__main__":

@@ -49,7 +49,13 @@
                   <div class="commentText">
                     {{ comment.text|safe }}
                     <span class="date sub-text">{{ comment.comment_author.name }}</span>
+                    {% if current_user.id == comment.author_id and current_user.is_authenticated or
+                    current_user.id == 1 %}
+                      <a class="btn btn-link" href="{{url_for('delete_comment', comment_id=comment.id,
+                      post_id=post.id )}}">Delete Comment</a>
+                    {% endif %}
                   </div>
+                  <hr/>
                 </li>
 
               </ul>
